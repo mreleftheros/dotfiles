@@ -1,0 +1,1 @@
+yt-dlp -P "~/Downloads/yt" -S "res:720" -o "%(uploader)s/%(title)s.%(ext)s" eRTTlS0zaW8

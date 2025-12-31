@@ -1,0 +1,29 @@
+# theme="catppuccin_mocha"
+theme="catppuccin_macchiato"
+# theme="iceberg-dark"
+
+[editor]
+mouse=false
+continue-comments=false
+gutters=["spacer"]
+# completion-replace=true
+bufferline="multiple"
+popup-border="menu"
+end-of-line-diagnostics="hint"
+
+[editor.lsp]
+display-inlay-hints=true
+
+[editor.cursor-shape]
+insert="bar"
+normal="block"
+
+[editor.file-picker]
+hidden=false
+
+[editor.inline-diagnostics]
+cursor-line="warning"
+
+[editor.auto-save]
+after-delay.enable=true
+after-delay.timeout=300

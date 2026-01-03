@@ -1,6 +1,6 @@
 # theme="catppuccin_mocha"
-theme="catppuccin_macchiato"
-# theme="iceberg-dark"
+# theme="catppuccin_macchiato"
+theme="iceberg-dark"
 
 [editor]
 mouse=false

@@ -3,7 +3,7 @@
 theme="iceberg-dark"
 
 [editor]
-mouse=false
+# mouse=false
 continue-comments=false
 gutters=["spacer"]
 # completion-replace=true

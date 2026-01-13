@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+
+while getopts v:p flag; do
+  case "$flag" in
+    v) video=${OPTARG};;
+    p) playlist=${OPTARG};;
+  esac
+done
+
+SAVE_DIR="$HOME/Downloads/yt"
+
+if [[ -n $video ]]; then
+  echo "Downloading video $video..."
+  yt-dlp -P "$SAVE_DIR" -S "res:720" -o "%(uploader)s/%(title)s.%(ext)s" "$video"
+elif [[ -n $playlist ]]; then
+  echo "Downloading playlist $playlist..."
+  yt-dlp -P "$SAVE_DIR" --yes-playlist -S "res:720" -o "%(uploader)s/%(playlist)s/%(title)s.%(ext)s" "$playlist"
+else
+  echo "nothing"
+fi

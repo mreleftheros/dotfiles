@@ -24,6 +24,6 @@ hidden=false
 [editor.inline-diagnostics]
 cursor-line="warning"
 
-[editor.auto-save]
-after-delay.enable=true
-after-delay.timeout=300
+# [editor.auto-save]
+# after-delay.enable=true
+# after-delay.timeout=300

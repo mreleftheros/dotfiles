@@ -1,14 +1,23 @@
 #! /usr/bin/env bash
 
-while getopts v:p flag; do
+# Reset OPTIND to ensure correct parsing in subsequent calls
+OPTIND=1
+
+while getopts v:p: flag; do
   case "$flag" in
-    v) video=${OPTARG};;
-    p) playlist=${OPTARG};;
+    v) video=${OPTARG}; echo "Video set to: $video";;
+    p) playlist=${OPTARG}; echo "Playlist set to: $playlist";;
+    *) echo "Invalid option: -$flag" >&2; exit 1;;
   esac
 done
 
+# Shift arguments to get rid of options processed by getopts
+shift $((OPTIND - 1))
+
+# Define save directory
 SAVE_DIR="$HOME/Downloads/yt"
 
+# Check for video or playlist and execute accordingly
 if [[ -n $video ]]; then
   echo "Downloading video $video..."
   yt-dlp -P "$SAVE_DIR" -S "res:720" -o "%(uploader)s/%(title)s.%(ext)s" "$video"
@@ -16,5 +25,5 @@ elif [[ -n $playlist ]]; then
   echo "Downloading playlist $playlist..."
   yt-dlp -P "$SAVE_DIR" --yes-playlist -S "res:720" -o "%(uploader)s/%(playlist)s/%(title)s.%(ext)s" "$playlist"
 else
-  echo "nothing"
+  echo "No video or playlist specified."
 fi

@@ -3,8 +3,9 @@
 # Reset OPTIND to ensure correct parsing in subsequent calls
 OPTIND=1
 
-while getopts v:p: flag; do
+while getopts a:v:p: flag; do
   case "$flag" in
+    a) audio=${OPTARG}; echo "Audio set to: $audio";;
     v) video=${OPTARG}; echo "Video set to: $video";;
     p) playlist=${OPTARG}; echo "Playlist set to: $playlist";;
     *) echo "Invalid option: -$flag" >&2; exit 1;;
@@ -18,12 +19,15 @@ shift $((OPTIND - 1))
 SAVE_DIR="$HOME/Downloads/yt"
 
 # Check for video or playlist and execute accordingly
-if [[ -n $video ]]; then
+if [[ -n $audio ]]; then
+  echo "Downloading audio $audio..."
+  yt-dlp --js-runtimes bun --cookies-from-browser firefox -x -P "$SAVE_DIR" -o "%(uploader)s/%(title)s.%(ext)s" "$audio"
+elif [[ -n $video ]]; then
   echo "Downloading video $video..."
-  yt-dlp -P "$SAVE_DIR" -S "res:720" -o "%(uploader)s/%(title)s.%(ext)s" "$video"
+  yt-dlp --js-runtimes bun --cookies-from-browser firefox -P "$SAVE_DIR" -S "res:720" -o "%(uploader)s/%(title)s.%(ext)s" "$video"
 elif [[ -n $playlist ]]; then
   echo "Downloading playlist $playlist..."
-  yt-dlp -P "$SAVE_DIR" --yes-playlist -S "res:720" -o "%(uploader)s/%(playlist)s/%(title)s.%(ext)s" "$playlist"
+  yt-dlp --no-js-runtimes --js-runtimes bun --cookies-from-browser firefox -P "$SAVE_DIR" --yes-playlist -S "res:720" -o "%(uploader)s/%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s" "$playlist"
 else
-  echo "No video or playlist specified."
+  echo "no input"
 fi

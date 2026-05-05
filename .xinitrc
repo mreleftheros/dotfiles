@@ -1,1 +1,1 @@
-setxkbmap -layout us,gr -option grp:alt_space_toggle
+setxkbmap -layout us,gr -option grp:alt_shift_toggle

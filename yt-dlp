@@ -27,7 +27,7 @@ elif [[ -n $video ]]; then
   yt-dlp --js-runtimes bun --cookies-from-browser firefox -P "$SAVE_DIR" -S "res:720" -o "%(uploader)s/%(title)s.%(ext)s" "$video"
 elif [[ -n $playlist ]]; then
   echo "Downloading playlist $playlist..."
-  yt-dlp --no-js-runtimes --js-runtimes bun --cookies-from-browser firefox -P "$SAVE_DIR" --yes-playlist -S "res:720" -o "%(uploader)s/%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s" "$playlist"
+  yt-dlp --js-runtimes bun --cookies-from-browser firefox -P "$SAVE_DIR" --yes-playlist -S "res:720" -o "%(uploader)s/%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s" "$playlist"
 else
   echo "no input"
 fi

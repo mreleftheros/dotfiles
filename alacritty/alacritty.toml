@@ -3,6 +3,5 @@ live_config_reload=false
 
 [window]
 title=""
-dimensions={columns=134,lines=39}
-position={x=155,y=0}
+startup_mode="maximized"
 opacity=0.90

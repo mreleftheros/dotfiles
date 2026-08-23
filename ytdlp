@@ -21,13 +21,13 @@ SAVE_DIR="$HOME/Downloads/yt"
 # Check for video or playlist and execute accordingly
 if [[ -n $audio ]]; then
   echo "Downloading audio $audio..."
-  yt-dlp --js-runtimes bun --cookies-from-browser firefox -x -P "$SAVE_DIR" -o "%(uploader)s/%(title)s.%(ext)s" "$audio"
+  yt-dlp --cookies-from-browser firefox -x -P "$SAVE_DIR" -o "%(uploader)s/%(title)s.%(ext)s" "$audio"
 elif [[ -n $video ]]; then
   echo "Downloading video $video..."
-  yt-dlp --js-runtimes bun --cookies-from-browser firefox -P "$SAVE_DIR" -S "res:720" -o "%(uploader)s/%(title)s.%(ext)s" "$video"
+  yt-dlp --cookies-from-browser firefox -P "$SAVE_DIR" -S "res:720" -o "%(uploader)s/%(title)s.%(ext)s" "$video"
 elif [[ -n $playlist ]]; then
   echo "Downloading playlist $playlist..."
-  yt-dlp --js-runtimes bun --cookies-from-browser firefox -P "$SAVE_DIR" --yes-playlist -S "res:720" -o "%(uploader)s/%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s" "$playlist"
+  yt-dlp --cookies-from-browser firefox -P "$SAVE_DIR" --yes-playlist -S "res:720" -o "%(uploader)s/%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s" "$playlist"
 else
   echo "no input"
 fi
